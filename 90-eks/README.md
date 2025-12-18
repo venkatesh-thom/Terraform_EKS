@@ -1,5 +1,6 @@
 # README – EKS Blue-Green Upgrade with Terraform & Scripts
 
+
 This document explains how to upgrade an EKS cluster control plane and nodegroups using **Blue-Green deployment strategy** with Terraform automation + shell upgrade scripts.
 
 ---
@@ -63,10 +64,12 @@ Target nodegroup version: 1.33
 
 ## Cluster Upgrdae 
 
- - ## Manually :
-   # 🔵 CONTROL PLANE + ADDONS UPGRADE PROCESS
-   # 🟢 NODEGROUP UPGRADE STRATEGY (BLUE → GREEN)
+- Manually :
+   - CONTROL PLANE + ADDONS UPGRADE PROCESS
+   - NODEGROUP UPGRADE STRATEGY (BLUE → GREEN)
    
+
+---
 
 # 🔵 CONTROL PLANE + ADDONS UPGRADE PROCESS
 
