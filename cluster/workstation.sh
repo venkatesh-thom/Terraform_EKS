@@ -1,4 +1,5 @@
 #!/bin/bash
+
 growpart /dev/nvme0n1 4
 lvextend -L +30G /dev/mapper/RootVG-varVol
 xfs_growfs /var
@@ -30,7 +31,7 @@ metadata:
     region: us-east-1
 managedNodeGroups:
   - name: roboshop-dev
-    instanceTypes: ["m5.large", "c3.large","t3.small","c5.large"]
+    instanceTypes: ["c7i-flex.large", "t3.micro","m7i-flex.large"]
     desiredCapacity: 3 #  by default this value is 3
     spot: true
 EOC
