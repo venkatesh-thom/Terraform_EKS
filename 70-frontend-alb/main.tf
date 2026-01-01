@@ -63,7 +63,7 @@ resource "aws_lb_listener" "ingress_alb" {
 # ---------------------------------------------------------------------------
 
 resource "aws_route53_record" "ingress_alb" {
-  zone_id         = var.zone_id                                      # Hosted Zone ID where your domain is managed
+  zone_id         = var.zone_id            # Hosted Zone ID where your domain is managed
   name            = "*.${var.domain_name}" # Record name (final domain will be: *.venkatesh.fun)
   type            = "A"
   allow_overwrite = true                                 # Allow Terraform to overwrite existing records if necessary
@@ -74,7 +74,41 @@ resource "aws_route53_record" "ingress_alb" {
   }
 }
 
+resource "aws_lb_target_group" "frontend" {
+  name                 = "${local.common_name_suffix}-frontend"
+  port                 = 8080
+  protocol             = "HTTP"
+  target_type          = "ip"
+  vpc_id               = local.vpc_id
+  deregistration_delay = 60 # waiting period before deleting the instance
 
+  health_check {
+    healthy_threshold   = 2
+    interval            = 10
+    matcher             = "200-299"
+    path                = "/"
+    port                = 8080
+    protocol            = "HTTP"
+    timeout             = 2
+    unhealthy_threshold = 2
+  }
+}
+
+resource "aws_lb_listener_rule" "frontend" {
+  listener_arn = aws_lb_listener.ingress_alb.arn
+  priority     = 10
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.frontend.arn
+  }
+
+  condition {
+    host_header {
+      values = ["${var.environment}.${var.domain_name}"] # dev.daws86s.fun
+    }
+  }
+}
 
 
 
