@@ -15,6 +15,7 @@ locals {
   eks_control_plane_sg_id = data.aws_ssm_parameter.eks_control_plane_sg_id.value
   eks_node_sg_id          = data.aws_ssm_parameter.eks_node_sg_id.value
   open_vpn_sg_id          = data.aws_ssm_parameter.open_vpn_sg_id.value
+  default_sg_id           = data.aws_ssm_parameter.default_sg_id.value
 
   vpn_ingress_rules = {
     mysql_22 = {
