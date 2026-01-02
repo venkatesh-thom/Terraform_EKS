@@ -10,16 +10,16 @@ data "aws_route_table" "main" {
   }
 }
 
-# #to get default vp
-# data "aws_vpc" "default_vpc" {
-#   default = true
+#to get default vp
+data "aws_vpc" "default_vpc" {
+  default = true
 
-#   # Optional: Add a second filter just to be explicit
-#   filter {
-#     name   = "is-default"
-#     values = ["true"]
-#   }
-# }
+  # Optional: Add a second filter just to be explicit
+  filter {
+    name   = "is-default"
+    values = ["true"]
+  }
+}
 
 #to get default subnet
 data "aws_subnet" "default_subnet" {
