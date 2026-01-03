@@ -110,7 +110,16 @@ resource "aws_lb_listener_rule" "frontend" {
   }
 }
 
-
+resource "aws_route53_record" "frontend" {
+  zone_id = var.zone_id
+  name    = "*.${var.domain_name}" # *.venkatesh.fun
+  type    = "A"
+  alias {
+    name                   = module.ingress_alb.alb_dns_name
+    zone_id                = module.ingress_alb.alb_zone_id
+    evaluate_target_health = true
+  }
+}
 
 
 # ---------------------------------------------------------
