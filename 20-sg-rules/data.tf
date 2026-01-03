@@ -61,6 +61,3 @@ data "aws_ssm_parameter" "eks_node_sg_id" {
   name = "/${var.project_name}/${var.environment}/eks_node_sg_id"
 }
 
-data "aws_ssm_parameter" "default_sg_id"{
-  name = "/${var.project_name}/${var.environment}/default_sg_id"
-}
