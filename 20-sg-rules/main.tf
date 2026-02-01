@@ -197,21 +197,21 @@ resource "aws_security_group_rule" "eks_node_vpc" {
 # # Github-runner  access to EKS (FIXED CIDR)
 # ##############################################
 
-resource "aws_security_group_rule" "runner_to_eks_control_plane" {
+resource "aws_security_group_rule" "github_runner_eks_control_plane" {
   type              = "ingress"
   security_group_id = local.eks_control_plane_sg_id
 
-  cidr_blocks = ["172.31.0.0/16"]
+  cidr_blocks = ["172.31.0.0/16"] # Github-runner
 
   from_port = 443
   to_port   = 443
   protocol  = "tcp"
 }
 
-resource "aws_security_group_rule" "eks_node_runner" {
+resource "aws_security_group_rule" "eks_node_github_runner" {
   type              = "ingress"
   security_group_id = local.eks_node_sg_id
-  cidr_blocks       = ["172.31.0.0/16"] # ✅ Jenkins VPC
+  cidr_blocks       = ["172.31.0.0/16"] # Github-runner 
   from_port         = 0
   to_port           = 0
   protocol          = "-1"
