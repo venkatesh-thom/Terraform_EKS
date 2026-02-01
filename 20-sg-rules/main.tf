@@ -194,7 +194,7 @@ resource "aws_security_group_rule" "eks_node_vpc" {
 
 
 # ##############################################
-# # Github-runner  access to EKS (FIXED CIDR)
+# # Github-runner  access to EKS  control plane 
 # ##############################################
 
 resource "aws_security_group_rule" "github_runner_eks_control_plane" {
@@ -208,6 +208,9 @@ resource "aws_security_group_rule" "github_runner_eks_control_plane" {
   protocol  = "tcp"
 }
 
+# ##############################################
+# # Github-runner access to EKS nodes [EC2 instances]  
+# ##############################################
 resource "aws_security_group_rule" "eks_node_github_runner" {
   type              = "ingress"
   security_group_id = local.eks_node_sg_id
