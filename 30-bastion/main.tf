@@ -3,7 +3,7 @@ resource "aws_instance" "bastion" {                              # Defines an EC
   instance_type          = "t3.micro"                            # EC2 instance type (size); t3.micro is a small, low-cost instance
   vpc_security_group_ids = [local.bastion_sg_id]                 # Attach this EC2 instance to a Security Group (from a local variable)
   subnet_id              = local.public_subnet_id                # Deploy the instance in this specific subnet (typically public for a bastion)
-  # iam_instance_profile   = aws_iam_instance_profile.bastion.name # Attach the IAM instance profile to give EC2 permissions
+  iam_instance_profile   = aws_iam_instance_profile.bastion.name # Attach the IAM instance profile to give EC2 permissions
 
   # Root block device configuration (disk for OS)
   root_block_device {
@@ -23,7 +23,7 @@ resource "aws_instance" "bastion" {                              # Defines an EC
 
 # Attaches the IAM Role BastionTerraformAdmin to the Bastion Host, enabling limited Terraform and AWS CLI access for automation tasks.
 
-# resource "aws_iam_instance_profile" "bastion" {
-#   name = "bastion"
-#   role = "BastionTerraformAdmin"
-# }
+resource "aws_iam_instance_profile" "bastion" {
+  name = "bastion"
+  role = "BastionTerraformAdmin"
+}
