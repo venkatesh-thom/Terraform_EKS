@@ -199,5 +199,4 @@ Look for:
 
 ---
 
-Author: DevOps Runbook  
-Use this document as a production troubleshooting reference.
+
