@@ -19,9 +19,9 @@ sudo yum -y install terraform
 
 dnf -y install dnf-plugins-core
 dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
-dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
-systemctl start docker
+dnf install -y docker-ce docker-ce-cli containerd.io
 systemctl enable docker
+systemctl start docker
 usermod -aG docker ec2-user
 
 curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.34.2/2025-11-13/bin/linux/amd64/kubectl
