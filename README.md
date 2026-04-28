@@ -2,36 +2,6 @@
 
 This document serves as a guide for managing an AWS EKS Terraform Jenkins CI/CD infrastructure project. It covers the directory structure, deployment, connectivity, troubleshooting, and security best practices.
 
-## Cluster Directory Structure
-
-```
-eks/
-  ├── eks.yaml
-  ├── terraform/
-      ├── 00-vpc/
-      ├── 10-subnets/
-      ├── 20-route53/
-      ├── 30-nat/
-      ├── 40-ec2/
-      ├── 50-eks/
-      ├── 60-logging/
-      ├── 70-monitoring/
-      ├── 80-jenkins/
-      ��── 90-eks/
-```
-
-### Terraform Modules
-- **00-vpc**: Module for creating the VPC.
-- **10-subnets**: Module for public/private subnets.
-- **20-route53**: Module for DNS setup.
-- **30-nat**: Module for NAT gateway configurations.
-- **40-ec2**: Module for EC2 instances.
-- **50-eks**: Module for EKS cluster.
-- **60-logging**: Module for CloudWatch logging setup.
-- **70-monitoring**: Module for monitoring setup (e.g., Prometheus).
-- **80-jenkins**: Module for Jenkins setup.
-- **90-eks**: Additional EKS configurations.
-
 ## Deployment Guide
 1. Ensure that you have the necessary IAM permissions.
 2. Clone the repository:
@@ -52,9 +22,7 @@ eks/
    ```
 6. Monitor the deployment.
 
-## Cross-VPC Connectivity
-- Utilize VPC peering to connect multiple VPCs.
-- Configure security group rules to allow traffic between VPCs.
+
 
 ## Troubleshooting
 - Verify the network configurations and security groups if connectivity issues arise.
